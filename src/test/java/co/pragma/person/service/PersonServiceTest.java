@@ -27,12 +27,12 @@ class PersonServiceTest {
     @Test
     void savePersonTest() {
         Person person = new Person();
-        person.setName("Test Restaurant");
+        person.setName("Test people");
 
         when(personRepository.save(any(Person.class))).thenReturn(person);
 
         Person result = personService.savePerson(person);
-        assertEquals("Test Restaurant", result.getName());
+        assertEquals("Test people", result.getName());
         verify(personRepository, times(1)).save(any(Person.class));
     }
 

@@ -25,21 +25,21 @@ class PersonControllerTest {
 
     @Test
     void getAllRestaurantsTest() throws Exception {
-        mockMvc.perform(get("/api/restaurants"))
+        mockMvc.perform(get("/api/people"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void saveRestaurantTest() throws Exception {
         Person person = new Person();
-        person.setName("Test Restaurant");
+        person.setName("Test people");
 
         when(personService.savePerson(any(Person.class))).thenReturn(person);
 
-        mockMvc.perform(post("/api/restaurants")
+        mockMvc.perform(post("/api/people")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\": \"Test Restaurant\", \"address\": \"123 Street\"}"))
+                        .content("{\"name\": \"Test people\", \"address\": \"123 Street\"}"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Test Restaurant"));
+                .andExpect(jsonPath("$.name").value("Test people"));
     }
 }
