@@ -1,5 +1,7 @@
 prueba:
   test: ${password}
+management.endpoints.web.exposure.include: health
+management.endpoint.health.show-details: always
 spring:
   application.name: person
   cloud:
