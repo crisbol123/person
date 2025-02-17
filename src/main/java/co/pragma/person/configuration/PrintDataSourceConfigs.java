@@ -16,7 +16,7 @@ public class PrintDataSourceConfigs {
 
     @PostConstruct
     public void printProperties() {
-        System.out.println("Database URL: " + dbUrl);
+        System.out.println("Database URL: prueba cambio" + dbUrl);
         System.out.println("Database Username: " + username);
     }
 }
