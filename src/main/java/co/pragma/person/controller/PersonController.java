@@ -2,6 +2,8 @@ package co.pragma.person.controller;
 
 import co.pragma.person.model.Person;
 import co.pragma.person.service.PersonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api/people")
 public class PersonController {
 
+    Logger log = LoggerFactory.getLogger(PersonController.class);
     @Autowired
     private PersonService personService;
 
@@ -31,6 +34,7 @@ public class PersonController {
 
     @PostMapping
     public Person savePerson(@RequestBody Person person) {
+        log.info("Saving person: {}", person);
         return personService.savePerson(person);
     }
 
