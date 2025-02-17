@@ -34,7 +34,7 @@ public class PersonController {
 
     @PostMapping
     public Person savePerson(@RequestBody Person person) {
-        log.info("Saving person: {}", person);
+        log.info("Saving person: identification {} name {}", person.getIdentification(),person.getName());
         return personService.savePerson(person);
     }
 
