@@ -22,11 +22,18 @@ public class PersonController {
 
     @GetMapping
     public List<Person> getAllPeople() {
+
         return personService.getAllPeople();
+
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
+        //log para simulacion de error
+        if(id==0){
+            throw new RuntimeException("Error de prueba");
+        }
+
         return personService.getPersonById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -35,6 +42,10 @@ public class PersonController {
     @PostMapping
     public Person savePerson(@RequestBody Person person) {
         log.info("Saving person: identification {} name {}", person.getIdentification(),person.getName());
+       //log para simulacion de error
+        if(person.getIdentification().equals("123456")){
+            throw new RuntimeException("Error de prueba");
+        }
         return personService.savePerson(person);
     }
 
