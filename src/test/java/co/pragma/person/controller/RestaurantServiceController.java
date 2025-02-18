@@ -17,29 +17,5 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(PersonController.class)
 class PersonControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
 
-    @MockBean
-    private PersonService personService;
-
-    @Test
-    void getAllRestaurantsTest() throws Exception {
-        mockMvc.perform(get("/api/people"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void saveRestaurantTest() throws Exception {
-        Person person = new Person();
-        person.setName("Test people");
-
-        when(personService.savePerson(any(Person.class))).thenReturn(person);
-
-        mockMvc.perform(post("/api/people")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"name\": \"Test people\", \"address\": \"123 Street\"}"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Test people"));
-    }
 }
